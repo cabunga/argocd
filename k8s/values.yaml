@@ -1,0 +1,8 @@
+api:
+  image: mi-usuario/mi-api:latest # Reemplaza con tu imagen
+  replicaCount: 1
+
+db:
+  image: postgres:13
+  database: mydb
+  user: dbadmin
