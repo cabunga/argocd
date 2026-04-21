@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-api
+spec:
+  replicas: {{ .Values.api.replicaCount }}
+  selector:
+    matchLabels:
+      app: my-api
+  template:
+    metadata:
+      labels:
+        app: my-api
+    spec:
+      containers:
+        - name: api
+          image: {{ .Values.api.image }}
+          env:
+            - name: DB_HOST
+              value: "postgres-db" # Nombre del Service de la base de datos
+            - name: DB_USER
+              value: {{ .Values.db.user }}
+            - name: DB_NAME
+              value: {{ .Values.db.database }}
+            # Tomamos la contraseña del Secret desencriptado por Kubeseal
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: DB_PASSWORD
+          ports:
+            - containerPort: 8000
