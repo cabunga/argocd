@@ -1,5 +1,5 @@
 api:
-  image: mi-usuario/mi-api:latest # Reemplaza con tu imagen
+  image: cabunga/argocdtest:3d00bafd936d
   replicaCount: 1
 
 db:
