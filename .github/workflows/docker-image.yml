@@ -14,12 +14,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ vars.DOCKER_USERNAME }}" --password-stdin
     
     - name: Build the Docker image
       run: |
         export IMGTAG=$(git -C ${PWD} rev-parse --short="12" HEAD)
         echo "IMGTAG=$IMGTAG" >> "$GITHUB_OUTPUT"
         cd app
-         
+        
         docker build . --file Dockerfile --tag cabunga/argocdtest:$IMGTAG
         docker push cabunga/argocdtest:$IMGTAG
