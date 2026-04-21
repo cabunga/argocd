@@ -18,5 +18,7 @@ jobs:
     - name: Build the Docker image
       run: |
         cd app
-        docker build . --file Dockerfile --tag cabunga/argocdtest:$(date +%s)
-        docker push cabunga/argocdtest:$(date +%s)
+         export IMGTAG=$(git -C ${{ env.AppWorkDir }} rev-parse --short="${{ env.hashlenght }}" HEAD)
+          echo "IMGTAG=$IMGTAG" >> "$GITHUB_OUTPUT"
+        docker build . --file Dockerfile --tag cabunga/argocdtest:$IMGTAG
+        docker push cabunga/argocdtest:$IMGTAG
