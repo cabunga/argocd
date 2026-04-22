@@ -1,0 +1,8 @@
+api:
+  image: cabunga/argocdtest:3d00bafd936d
+  replicaCount: 1
+
+db:
+  image: postgres:13
+  database: mydb
+  user: dbadmin
