@@ -1,6 +1,6 @@
 api:
   image: cabunga/argocdtest:3d00bafd936d
-  replicaCount: 2
+  replicaCount: 3
 
 db:
   image: postgres:13
