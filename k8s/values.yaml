@@ -1,6 +1,13 @@
 api:
   image: cabunga/argocdtest:3d00bafd936d
   replicaCount: 3
+  resources:
+    limits:
+      cpu: 10m
+      memory: 28Mi
+    requests:
+      cpu: 10m
+      memory: 28Mi
 
 db:
   image: postgres:13
